@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TweetStreamer", "Source\TweetStreamer\TweetStreamer.csproj", "{208E305D-154F-441F-B617-8E2A02C9A0E7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Amazon.SimpleQueue", "Source\Amazon.SimpleQueue\Amazon.SimpleQueue.csproj", "{18E01D46-E8FB-4ADC-A280-493F97E4BF67}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "Source\UnitTests\UnitTests.csproj", "{B3821238-835D-4EF2-A4E5-8DCC3BEA4952}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Source\Core\Core.csproj", "{DA34AF3C-633F-4402-A76E-E9A54A643D99}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twitter.Infrastructure", "Source\Twitter.Infrastructure\Twitter.Infrastructure.csproj", "{E4DD8744-0134-43A5-9DA3-BAB8393EB139}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StopWordsFilter", "Source\StopWordsFilter\StopWordsFilter.csproj", "{AC87FFA5-C5BE-4F53-B861-47D875E566EB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{208E305D-154F-441F-B617-8E2A02C9A0E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{208E305D-154F-441F-B617-8E2A02C9A0E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{208E305D-154F-441F-B617-8E2A02C9A0E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{208E305D-154F-441F-B617-8E2A02C9A0E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18E01D46-E8FB-4ADC-A280-493F97E4BF67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18E01D46-E8FB-4ADC-A280-493F97E4BF67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18E01D46-E8FB-4ADC-A280-493F97E4BF67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18E01D46-E8FB-4ADC-A280-493F97E4BF67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3821238-835D-4EF2-A4E5-8DCC3BEA4952}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3821238-835D-4EF2-A4E5-8DCC3BEA4952}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3821238-835D-4EF2-A4E5-8DCC3BEA4952}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3821238-835D-4EF2-A4E5-8DCC3BEA4952}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA34AF3C-633F-4402-A76E-E9A54A643D99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA34AF3C-633F-4402-A76E-E9A54A643D99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA34AF3C-633F-4402-A76E-E9A54A643D99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA34AF3C-633F-4402-A76E-E9A54A643D99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4DD8744-0134-43A5-9DA3-BAB8393EB139}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4DD8744-0134-43A5-9DA3-BAB8393EB139}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4DD8744-0134-43A5-9DA3-BAB8393EB139}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4DD8744-0134-43A5-9DA3-BAB8393EB139}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC87FFA5-C5BE-4F53-B861-47D875E566EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC87FFA5-C5BE-4F53-B861-47D875E566EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC87FFA5-C5BE-4F53-B861-47D875E566EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC87FFA5-C5BE-4F53-B861-47D875E566EB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
