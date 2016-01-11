@@ -3,5 +3,7 @@
     public interface IMessageQueue
     {
         void Send(object value);
+
+        TMessage Receive<TMessage>();
     }
 }

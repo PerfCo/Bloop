@@ -26,5 +26,10 @@ namespace Amazon.SimpleQueue
             };
             _client.SendMessage(request);
         }
+
+        public TMessage Receive<TMessage>()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
