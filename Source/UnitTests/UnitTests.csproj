@@ -46,6 +46,10 @@
       <HintPath>..\..\packages\Nelibur.Sword.3.1.6\lib\net45\Nelibur.Sword.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="RedisInside, Version=3.0.500.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\redis-inside.3.0.500.0\lib\net451\RedisInside.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -73,7 +77,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ForTest.cs" />
+    <Compile Include="LocalMessageQueueTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ClassFixtures\RedisServerStarter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
