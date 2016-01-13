@@ -1,5 +1,6 @@
 ﻿using System;
-using System.Threading;
+using System.Collections.Generic;
+using Amazon.SimpleQueue.Messages;
 using StackExchange.Redis;
 
 namespace Amazon.SimpleQueue
@@ -29,29 +30,42 @@ namespace Amazon.SimpleQueue
             _subscriber = _redis.GetSubscriber();
         }
 
+        public void Processed(AmazonDeleteMessage message)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Send(object value)
         {
             string json = _config.DataSerializer.ToJson(value);
             _subscriber.Publish(_config.QueueUrl, json);
         }
 
-        public TMessage Receive<TMessage>()
+        public List<TMessage> Receive<TMessage>()
+            where TMessage : AmazonDataMessage, new()
         {
-            string json = null;
-            var syncEvent = new AutoResetEvent(false);
-
-            Action<RedisChannel, RedisValue> oneTimeHandler = null;
-            oneTimeHandler = (redisChannel, redisValue) =>
-            {
-                _subscriber.Unsubscribe(_config.QueueUrl, oneTimeHandler);
-                json = redisValue;
-                syncEvent.Set();
-            };
-
-            _subscriber.Subscribe(_config.QueueUrl, oneTimeHandler);
-            syncEvent.WaitOne();
-
-            return _config.DataSerializer.FromJson<TMessage>(json).Value;
+            throw new NotImplementedException();
         }
+
+
+//        public List<TMessage> Receive<TMessage>()
+//        {
+//            string json = null;
+//            var syncEvent = new AutoResetEvent(false);
+//
+//            Action<RedisChannel, RedisValue> oneTimeHandler = null;
+//            oneTimeHandler = (redisChannel, redisValue) =>
+//            {
+//                _subscriber.Unsubscribe(_config.QueueUrl, oneTimeHandler);
+//                json = redisValue;
+//                syncEvent.Set();
+//            };
+//
+//            _subscriber.Subscribe(_config.QueueUrl, oneTimeHandler);
+//            syncEvent.WaitOne();
+//
+//            var result = new List<TMessage> { _config.DataSerializer.FromJson<TMessage>(json).Value };
+//            return result;
+//        }
     }
 }

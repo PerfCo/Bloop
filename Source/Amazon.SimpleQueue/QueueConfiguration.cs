@@ -8,9 +8,11 @@ namespace Amazon.SimpleQueue
     {
         private QueueConfiguration()
         {
+            MaxNumberOfMessages = 10;
         }
 
         public string QueueUrl { get; set; }
+        public int MaxNumberOfMessages { get; set; }
         public IDataSerializer DataSerializer { get; set; }
 
         public static QueueConfiguration Create()
