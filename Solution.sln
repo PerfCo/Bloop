@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TweetStreamer", "Source\TweetStreamer\TweetStreamer.csproj", "{208E305D-154F-441F-B617-8E2A02C9A0E7}"
 EndProject
@@ -16,6 +16,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StopWordsFilter", "Source\StopWordsFilter\StopWordsFilter.csproj", "{AC87FFA5-C5BE-4F53-B861-47D875E566EB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Redis.LocalQueue", "Source\Redis.LocalQueue\Redis.LocalQueue.csproj", "{F87A0F50-C74F-48F8-A4D1-56051EAC52EE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloop.DataContracts", "Source\Bloop.DataContracts\Bloop.DataContracts.csproj", "{D3EA192C-FD70-4A26-93C1-F72F81B9B9A9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{F87A0F50-C74F-48F8-A4D1-56051EAC52EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F87A0F50-C74F-48F8-A4D1-56051EAC52EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F87A0F50-C74F-48F8-A4D1-56051EAC52EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3EA192C-FD70-4A26-93C1-F72F81B9B9A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3EA192C-FD70-4A26-93C1-F72F81B9B9A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3EA192C-FD70-4A26-93C1-F72F81B9B9A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3EA192C-FD70-4A26-93C1-F72F81B9B9A9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

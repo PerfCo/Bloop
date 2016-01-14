@@ -11,17 +11,17 @@ using Xunit;
 
 namespace UnitTests
 {
-    public class LocalMessageQueueTests : IClassFixture<RedisServerStarter>
+    public sealed class LocalMessageQueueTests : IClassFixture<RedisServerStarter>
     {
         private readonly LocalMessageQueue _localMessageQueue;
 
         public LocalMessageQueueTests()
         {
             var dataSerializerMock = new Mock<IDataSerializer>();
-            dataSerializerMock.Setup(x => x.ToJson(It.IsAny<FakeAmazonDataMessage>()))
-                .Returns<FakeAmazonDataMessage>(x => x.Data);
+            dataSerializerMock.Setup(x => x.ToJson(It.IsAny<AmazonDataMessage>()))
+                              .Returns<AmazonDataMessage>(x => x.RawData);
             dataSerializerMock.Setup(x => x.FromJson<AmazonDataMessage>(It.IsAny<string>()))
-                .Returns<string>(x => ((AmazonDataMessage)new FakeAmazonDataMessage {RawData = x}).ToOption());
+                              .Returns<string>(x => new AmazonDataMessage {RawData = x}.ToOption());
 
             var configMock = new Mock<IMessageQueueConfig>();
             configMock.Setup(x => x.QueueUrl).Returns("url");
@@ -33,28 +33,23 @@ namespace UnitTests
         [Fact]
         public void Receive_SingleMessage_Ok()
         {
-            _localMessageQueue.Send(new FakeAmazonDataMessage {RawData = "msg"});
+            _localMessageQueue.Send(new AmazonDataMessage {RawData = "msg"});
 
-            List<FakeAmazonDataMessage> messages = _localMessageQueue.Receive<FakeAmazonDataMessage>();
+            List<AmazonDataMessage> messages = _localMessageQueue.Receive();
 
-            Assert.Equal("msg", messages.Single().Data);
+            Assert.Equal("msg", messages.Single().RawData);
         }
 
         [Fact]
         public void Receive_TwoMessages_Ok()
         {
-            _localMessageQueue.Send(new FakeAmazonDataMessage { RawData = "msg_1" });
-            _localMessageQueue.Send(new FakeAmazonDataMessage { RawData = "msg_2" });
+            _localMessageQueue.Send(new AmazonDataMessage {RawData = "msg_1"});
+            _localMessageQueue.Send(new AmazonDataMessage {RawData = "msg_2"});
             Thread.Sleep(50);
 
-            List<FakeAmazonDataMessage> messages = _localMessageQueue.Receive<FakeAmazonDataMessage>();
+            List<AmazonDataMessage> messages = _localMessageQueue.Receive();
 
             Assert.Equal(2, messages.Count);
-        }
-
-        private class FakeAmazonDataMessage : AmazonDataMessage
-        {
-            public string Data => RawData;
         }
     }
 }

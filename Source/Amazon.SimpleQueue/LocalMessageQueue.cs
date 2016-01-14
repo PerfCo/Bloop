@@ -45,18 +45,17 @@ namespace Amazon.SimpleQueue
             _subscriber.Publish(_config.QueueUrl, json);
         }
 
-        public List<TMessage> Receive<TMessage>()
-            where TMessage : AmazonDataMessage, new()
+        public List<AmazonDataMessage> Receive()
         {
             SpinWait.SpinUntil(() => _receivedMessages.Count > 0);
-            return DequeueRecievedMessages<TMessage>();
+            return DequeueRecievedMessages();
         }
 
-        private List<TMessage> DequeueRecievedMessages<TMessage>() where TMessage : AmazonDataMessage, new()
+        private List<AmazonDataMessage> DequeueRecievedMessages()
         {
             lock (_lockObject)
             {
-                var result = _receivedMessages.Cast<TMessage>().ToList();
+                var result = _receivedMessages;
                 _receivedMessages.Clear();
                 return result;
             }

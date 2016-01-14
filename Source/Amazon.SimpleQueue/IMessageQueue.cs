@@ -7,8 +7,6 @@ namespace Amazon.SimpleQueue
     {
         void Processed(AmazonDeleteMessage message);
         void Send(object value);
-
-        List<TMessage> Receive<TMessage>()
-            where TMessage : AmazonDataMessage, new();
+        List<AmazonDataMessage> Receive();
     }
 }

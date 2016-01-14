@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Amazon.SimpleQueue;
+using Amazon.SimpleQueue.Messages;
+using Core.Serializers;
 using Nelibur.Sword.DataStructures;
 using Nelibur.Sword.Extensions;
 using Nelibur.Sword.Threading.ThreadPools;
@@ -17,7 +20,11 @@ namespace StopWordsFilter.Processors
         private readonly ITinyThreadPool _threadPool;
         private Option<CancellationTokenSource> _loopTask = Option<CancellationTokenSource>.Empty;
 
-        public StopWordsProcessor(IMessageQueue inputQueue, IMessageQueue resultQueue, ITinyThreadPool threadPool)
+        public StopWordsProcessor(
+            IMessageQueue inputQueue,
+            IMessageQueue resultQueue,
+            ITinyThreadPool threadPool,
+            IDataSerializer dataSerializer)
         {
             _inputQueue = inputQueue;
             _resultQueue = resultQueue;
@@ -54,13 +61,18 @@ namespace StopWordsFilter.Processors
                     {
                         break;
                     }
-                    throw new NotImplementedException();
+                    List<AmazonDataMessage> messages = _inputQueue.Receive();
+                    messages.ForEach(x => _threadPool.AddTask(() => Process(x)));
                 }
                 catch (Exception ex)
                 {
                     _logger.Error(ex);
                 }
             }
+        }
+
+        private void Process(AmazonDataMessage message)
+        {
         }
     }
 }

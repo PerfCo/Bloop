@@ -41,30 +41,28 @@ namespace Amazon.SimpleQueue
             _client.SendMessage(request);
         }
 
-        public List<TMessage> Receive<TMessage>()
-            where TMessage : AmazonDataMessage, new()
+        public List<AmazonDataMessage> Receive()
         {
             Option<ReceiveMessageResponse> messageResponse = ReceiveMessage();
             Option<List<Message>> messages = messageResponse.Map(x => x.Messages);
             if (messages.HasNoValue)
             {
-                return new List<TMessage>();
+                return new List<AmazonDataMessage>();
             }
-            return messages.Value.ConvertAll(CreateMessage<TMessage>).ToValue().ToList();
+            return messages.Value.ConvertAll(CreateMessage).ToValue().ToList();
         }
 
-        private Option<TMessage> CreateMessage<TMessage>(Message message)
-            where TMessage : AmazonDataMessage, new()
+        private Option<AmazonDataMessage> CreateMessage(Message message)
         {
             if (string.IsNullOrWhiteSpace(message.Body))
             {
-                return Option<TMessage>.Empty;
+                return Option<AmazonDataMessage>.Empty;
             }
             var deleteMessage = new AmazonDeleteMessage
             {
                 ReceiptHandle = message.ReceiptHandle
             };
-            var result = new TMessage
+            var result = new AmazonDataMessage
             {
                 DeleteMessage = deleteMessage,
                 RawData = message.Body,
