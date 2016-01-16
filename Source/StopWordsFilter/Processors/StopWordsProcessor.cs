@@ -12,7 +12,7 @@ using NLog;
 
 namespace StopWordsFilter.Processors
 {
-    public sealed class StopWordsProcessor
+    public sealed class StopWordsProcessor : IDisposable
     {
         private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
         private readonly IMessageQueue _inputQueue;
@@ -29,6 +29,11 @@ namespace StopWordsFilter.Processors
             _inputQueue = inputQueue;
             _outputQueue = outputQueue;
             _threadPool = threadPool;
+        }
+
+        public void Dispose()
+        {
+            Stop();
         }
 
         public void Start()
