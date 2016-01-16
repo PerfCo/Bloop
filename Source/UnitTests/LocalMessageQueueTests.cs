@@ -13,7 +13,7 @@ namespace UnitTests
 {
     public sealed class LocalMessageQueueTests : IClassFixture<RedisServerStarter>
     {
-        private readonly LocalMessageQueue _localMessageQueue;
+        private readonly IMessageQueue _localMessageQueue;
 
         public LocalMessageQueueTests()
         {
@@ -23,11 +23,12 @@ namespace UnitTests
             dataSerializerMock.Setup(x => x.FromJson<AmazonDataMessage>(It.IsAny<string>()))
                               .Returns<string>(x => new AmazonDataMessage {RawData = x}.ToOption());
 
-            var configMock = new Mock<IMessageQueueConfig>();
-            configMock.Setup(x => x.QueueUrl).Returns("url");
-            configMock.Setup(x => x.DataSerializer).Returns(dataSerializerMock.Object);
-
-            _localMessageQueue = new LocalMessageQueue(configMock.Object);
+            _localMessageQueue = QueueConfiguration.Create()
+                                                   .Configure(config =>
+                                                   {
+                                                       config.DataSerializer = dataSerializerMock.Object;
+                                                       config.QueueUrl = "url";
+                                                   }).CreateLocalQueue();
         }
 
         [Fact]

@@ -32,6 +32,12 @@ namespace Amazon.SimpleQueue
             return new AmazonMessageQueue(this);
         }
 
+        public IMessageQueue CreateLocalQueue()
+        {
+            Validate();
+            return new LocalMessageQueue(this);
+        }
+
         private void Validate()
         {
             if (string.IsNullOrWhiteSpace(QueueUrl))

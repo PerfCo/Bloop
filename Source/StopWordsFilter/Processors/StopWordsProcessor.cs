@@ -16,18 +16,18 @@ namespace StopWordsFilter.Processors
     {
         private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
         private readonly IMessageQueue _inputQueue;
-        private readonly IMessageQueue _resultQueue;
+        private readonly IMessageQueue _outputQueue;
         private readonly ITinyThreadPool _threadPool;
         private Option<CancellationTokenSource> _loopTask = Option<CancellationTokenSource>.Empty;
 
         public StopWordsProcessor(
             IMessageQueue inputQueue,
-            IMessageQueue resultQueue,
+            IMessageQueue outputQueue,
             ITinyThreadPool threadPool,
             IDataSerializer dataSerializer)
         {
             _inputQueue = inputQueue;
-            _resultQueue = resultQueue;
+            _outputQueue = outputQueue;
             _threadPool = threadPool;
         }
 
@@ -49,6 +49,7 @@ namespace StopWordsFilter.Processors
             _logger.Info("StopWordsProcessor stopped");
             _loopTask.Do(x => x.Cancel());
             _loopTask = Option<CancellationTokenSource>.Empty;
+            _threadPool.SafeDispose(_logger.Error);
         }
 
         private void ProcessRequests(CancellationToken token)
@@ -73,6 +74,7 @@ namespace StopWordsFilter.Processors
 
         private void Process(AmazonDataMessage message)
         {
+            throw new NotImplementedException();
         }
     }
 }

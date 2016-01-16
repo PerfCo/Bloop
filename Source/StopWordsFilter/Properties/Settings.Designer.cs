@@ -33,5 +33,23 @@ namespace StopWordsFilter.Properties {
                 return ((global::System.Collections.Specialized.StringCollection)(this["StopWords"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string InputTweetQueueUrl {
+            get {
+                return ((string)(this["InputTweetQueueUrl"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string OutputTweetQueueUrl {
+            get {
+                return ((string)(this["OutputTweetQueueUrl"]));
+            }
+        }
     }
 }

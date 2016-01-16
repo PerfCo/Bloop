@@ -11,7 +11,7 @@ using NLog;
 
 namespace Amazon.SimpleQueue
 {
-    public sealed class AmazonMessageQueue : IMessageQueue
+    internal sealed class AmazonMessageQueue : IMessageQueue
     {
         private const string ApproximateReceiveCount = "ApproximateReceiveCount";
         private static readonly Logger _log = LogManager.GetCurrentClassLogger();
@@ -19,7 +19,7 @@ namespace Amazon.SimpleQueue
         private readonly IMessageQueueConfig _config;
         private readonly IDataSerializer _dataSerializer;
 
-        public AmazonMessageQueue(IMessageQueueConfig config)
+        internal AmazonMessageQueue(IMessageQueueConfig config)
         {
             _config = config;
             _dataSerializer = config.DataSerializer;

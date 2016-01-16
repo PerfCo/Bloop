@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using Amazon.SimpleQueue.Messages;
 using StackExchange.Redis;
@@ -28,7 +27,7 @@ namespace Amazon.SimpleQueue
             _redis = ConnectionMultiplexer.Connect(config);
         }
 
-        public LocalMessageQueue(IMessageQueueConfig config)
+        internal LocalMessageQueue(IMessageQueueConfig config)
         {
             _config = config;
             _subscriber = _redis.GetSubscriber();
