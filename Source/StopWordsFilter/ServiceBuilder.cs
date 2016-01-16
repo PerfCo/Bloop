@@ -19,6 +19,7 @@ namespace StopWordsFilter
             {
                 return;
             }
+            StopProcessors();
 
             _kernel.Dispose();
             _disposed = true;
